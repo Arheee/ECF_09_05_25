@@ -23,11 +23,11 @@ public class DevRedisConfig {
     JedisConnectionFactory jedisConnectionFactory() {
         System.out.println("Loading Dev profile redis config....");
         RedisStandaloneConfiguration redisStandaloneConfiguration =
-                new RedisStandaloneConfiguration(Objects.requireNonNull(environment.getProperty("REDIS_HOST")),
-                        Integer.parseInt(Objects.requireNonNull(environment.getProperty("REDIS_PORT"))));
+                new RedisStandaloneConfiguration(Objects.requireNonNull(environment.getProperty("redis.host")),
+                        Integer.parseInt(Objects.requireNonNull(environment.getProperty("redis.port"))));
 
 		redisStandaloneConfiguration.
-                setPassword(RedisPassword.of(Objects.requireNonNull(environment.getProperty("REDIS_PASSWORD"))));
+                setPassword(RedisPassword.of(Objects.requireNonNull(environment.getProperty("redis.password"))));
         return new JedisConnectionFactory(redisStandaloneConfiguration);
     }
 

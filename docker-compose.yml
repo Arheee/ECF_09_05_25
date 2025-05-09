@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-ecommerce
+    environment:
+      MYSQL_ROOT_PASSWORD: mypass
+      MYSQL_DATABASE: ecommerce_app_database
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: mypass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-hmysql", "-pmypass"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:alpine
+    container_name: redis-ecommerce
+    ports:
+      - "6379:6379"
+
+  authentication-service:
+    build: ./server/authentication-service
+    ports:
+      - "8081:8081"
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_SCHEMA: ecommerce_app_database
+      DB_USER: mysqluser
+      DB_PASS: mypass
+      ACTIVE_PROFILE: dev
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: always
+
+  common-data-service:
+    build: ./server/common-data-service
+    ports:
+      - "8082:8082"
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_SCHEMA: ecommerce_app_database
+      DB_USER: mysqluser
+      DB_PASS: mypass
+      REDIS_PORT: 6379
+      ACTIVE_PROFILE: dev
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: always
+
+  payment-service:
+    build: ./server/payment-service
+    ports:
+      - "8083:8083"
+    environment:
+      STRIPE_SECRET_KEY: sk_test_1234567890abcdef
+
+  search-suggestion-service:
+    build: ./server/search-suggestion-service
+    ports:
+      - "8084:8084"
+
+  client:
+    build: ./client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - authentication-service
+      - common-data-service
+      - payment-service
+      - search-suggestion-service
+
+volumes:
+  mysql_data:

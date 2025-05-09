@@ -1,0 +1,4 @@
+com\ut\ecommerce\searchsuggestionservice\model\SearchSuggestionResponse.class
+com\ut\ecommerce\searchsuggestionservice\SearchSuggestionServiceApplication.class
+com\ut\ecommerce\searchsuggestionservice\client\CommonDataClient.class
+com\ut\ecommerce\searchsuggestionservice\controller\SuggestionController.class
