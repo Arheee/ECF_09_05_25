@@ -4,22 +4,22 @@
 -------------------------------------------------
 
 # Etapes pour build et démarrer 
-# Lancer Docker.desktop
+1.Lancer Docker.desktop
 
-# Constuire les images
+2.Constuire les images
 Chaque service a un dockerfile, possibilité de tout builder avec :
 ```bash
 docker compose build
 ```
 🔺Avoir tous les ports exposés dans les dockerfile et dans le docker-compose.yml
 
-# Lancer l'application 
+3.Lancer l'application 
 ```bash
 docker compose up 
 ```
 Grace à ça tout va démarrer (Mysql, Redis, les microservices, le client React)
 
-# Accès à l'interface
+4.Accès à l'interface
 Une fois que tout tourne, ouvrir: 
 ```bash
 http://locahost:3000
