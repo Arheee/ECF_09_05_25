@@ -55,6 +55,8 @@ function SearchBar(props) {
             if (queryLink) {
                 history.push(`${PRODUCT_BY_CATEGORY_DATA_API}?q=${queryLink}::page=0,${MAX_PRODUCTS_PER_PAGE}`)
             }
+
+
         }
     }
 

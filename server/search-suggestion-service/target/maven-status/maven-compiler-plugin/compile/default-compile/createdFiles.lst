@@ -1,5 +1,7 @@
 com\ut\ecommerce\searchsuggestionservice\controller\SearchSuggestionController.class
+com\ut\ecommerce\searchsuggestionservice\config\CorsConfig.class
+com\ut\ecommerce\searchsuggestionservice\client\CommonDataClient.class
 com\ut\ecommerce\searchsuggestionservice\model\SearchSuggestionResponse.class
 com\ut\ecommerce\searchsuggestionservice\SearchSuggestionServiceApplication.class
+com\ut\ecommerce\searchsuggestionservice\config\CorsConfig$1.class
 com\ut\ecommerce\searchsuggestionservice\model\KeywordDto.class
-com\ut\ecommerce\searchsuggestionservice\client\CommonDataClient.class

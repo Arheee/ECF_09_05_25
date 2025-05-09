@@ -345,7 +345,6 @@ export const getSearchSuggestions = (prefix) => async dispatch => {
         if (responseError) {
             return
         }
-
         log.debug(`[ACTION]: Data = ${JSON.parse(JSON.stringify(response.data))}.`)
         dispatch({
             type: SEARCH_KEYWORD, payload: {data: JSON.parse(JSON.stringify(response.data))}

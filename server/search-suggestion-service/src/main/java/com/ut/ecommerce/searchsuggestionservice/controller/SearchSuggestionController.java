@@ -26,7 +26,7 @@ public class SearchSuggestionController {
 
         return response.getProductKeywords().stream()
                 .filter(keyword -> keyword.toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT)))
-                .map(keyword -> new KeywordDto(keyword, "/products?q=" + keyword)) // lien à adapter si besoin
+                .map(keyword -> new KeywordDto(keyword, "/products?q=" + keyword)) 
                 .collect(Collectors.toList());
     }
 }
