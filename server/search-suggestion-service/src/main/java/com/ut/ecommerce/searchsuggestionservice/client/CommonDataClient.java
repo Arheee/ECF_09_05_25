@@ -1,17 +1,13 @@
 package com.ut.ecommerce.searchsuggestionservice.client;
 
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import com.ut.ecommerce.searchsuggestionservice.model.SearchSuggestionResponse;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
-@Component
-public class CommonDataClient {
+@FeignClient(name = "common-data-service", url = "http://common-data-service:8082")
+public interface CommonDataClient {
 
-    private final String COMMON_DATA_URL = "http://localhost:8082/search-suggestion-list";
-
-    private final RestTemplate restTemplate = new RestTemplate();
-
-    public SearchSuggestionResponse fetchSuggestions() {
-        return restTemplate.getForObject(COMMON_DATA_URL, SearchSuggestionResponse.class);
-    }
+    @GetMapping("/search-suggestion-list")
+    SearchSuggestionResponse fetchSuggestions();
 }
