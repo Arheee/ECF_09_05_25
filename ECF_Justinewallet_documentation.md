@@ -3,19 +3,19 @@
 1. Architecture 
 L'application e-commerce est construite sur une architecture microservices. Chaque fonctionnalié principale est encapsulée dans un microservice distinct. Les services sont dévéloppés avec Sring boot et communiquent entre eux via api rest. 
 
-Microservices présents:
+# Microservices présents:
 
-# authentication-service 
+- authentication-service 
 gestion des connexions.
-# payment-service 
+- payment-service 
 gestion des paiements.
-# common-data-service 
+- common-data-service 
 expose des données globales (comme les mots-clés).
-# search-suggestion-service
+- search-suggestion-service
   nouveau, qui fournit des suggestions de recherche à partir de mots-clés.
 
-Frontend:
-# client (react)
+# Frontend:
+- client (react)
 consomme les APIs des microservices
 
  2. Communication 
